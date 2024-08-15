@@ -1,0 +1,21 @@
+const keys = {
+    0: 'num',
+    '.' : 'modifier',
+    '=' : 'execute',
+    '+' : 'operator',
+    1 : 'num',
+    2 : 'num',
+    3 : 'num',
+    '-' : 'operator',
+    4 : 'num',
+    5 : 'num',
+    6 : 'num',
+    '*' : 'operator',
+    7 : 'num',
+    8 : 'num',
+    9 : 'num',
+    '/' : 'operator',
+    '+-' : 'modifier',
+    '%' : 'modifier',
+    'AC' : 'reset'
+};
