@@ -15,6 +15,20 @@ body {
 .calcDisplay {
     flex-basis: 72px;
     background-color: pink;
+    display: flex;
+
+}
+
+.display {
+    background-color: grey;
+    box-sizing: border-box;
+    margin: 10px;
+    border-radius: 12px;
+    flex: 1;
+    text-align: end;
+    font-size: 30px;
+    padding-top: 10px;
+    padding-right: 10px;
 }
 
 .keyboard {
@@ -40,8 +54,14 @@ body {
 }
 
 .eachSquare {
-    
     flex: 1;
     background-color: green;
     border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.keyText {
+    font-size: medium;
 }

@@ -1,23 +1,24 @@
-const keys = {
-    0: 'num',
-    '.' : 'modifier',
-    '=' : 'execute',
-    '+' : 'operator',
-    1 : 'num',
-    2 : 'num',
-    3 : 'num',
-    '-' : 'operator',
-    4 : 'num',
-    5 : 'num',
-    6 : 'num',
-    '*' : 'operator',
-    7 : 'num',
-    8 : 'num',
-    9 : 'num',
-    '/' : 'operator',
-    '+-' : 'modifier',
-    '%' : 'modifier',
-    'AC' : 'reset'
+const allKeys = {
+    0: ['N/A', 'modifier'],
+    1 : ['+-', 'modifier'],
+    2 : ['%', 'modifier'],
+    3 : ['AC', 'reset'],
+    4 : [7, 'number'],
+    5 : [8, 'number'],
+    6 : [9, 'number'],
+    7 : ['div', 'operator'],
+    8 : [4, 'num'],
+    9 : [5, 'num'],
+    10 : [6, 'num'],
+    11 : ['x', 'operator'],
+    12 : [1, 'num'],
+    13 : [2, 'num'],
+    14 : [3, 'num'],
+    15 : ['-', 'operator'],
+    16 : [0, 'num'],
+    17 : ['.', 'modifier'],
+    18 : ['=', 'execute'],
+    19 : ['+', 'operator']
 };
 
 const calcContainor = document.querySelector('.keyboard');
@@ -41,8 +42,13 @@ function createCalculator(parentDiv, numberRows, numberCols) {
             
             const newSquare = document.createElement("div");
             newSquare.classList.add("eachSquare");
-            newRow.appendChild(newSquare);
 
+            const keyText = document.createElement('span');
+            keyText.textContent = allKeys[Object.keys(allKeys)[indexCol + (indexRow * 4)]][0];
+            keyText.classList.add('keyText');
+            newSquare.appendChild(keyText);
+            newRow.appendChild(newSquare);
+            
         }
         parentDiv.appendChild(newRow);
     }
