@@ -19,3 +19,31 @@ const keys = {
     '%' : 'modifier',
     'AC' : 'reset'
 };
+
+const calcContainor = document.querySelector('.keyboard');
+const createButton = document.querySelector('#createCalc');
+
+createButton.addEventListener('click', () => {
+    console.log("creating");
+    createCalculator(calcContainor, 5, 4);
+});
+
+
+
+
+function createCalculator(parentDiv, numberRows, numberCols) {
+    for (let indexRow = 0; indexRow < numberRows; indexRow++) {
+        
+        const newRow = document.createElement("div");
+        newRow.classList.add("eachRow");
+        
+        for (let indexCol = 0; indexCol < numberCols; indexCol++) {
+            
+            const newSquare = document.createElement("div");
+            newSquare.classList.add("eachSquare");
+            newRow.appendChild(newSquare);
+
+        }
+        parentDiv.appendChild(newRow);
+    }
+}
