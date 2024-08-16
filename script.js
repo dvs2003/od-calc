@@ -127,8 +127,8 @@ function handleNumInput(btn, statusButton, displayBar) {
 }
 
 function executeTheList(statusButton, displayBar, isNext = false) {
-    if (operatorFinal == null) {
-        alert('No Operator Selected!!');
+    if (operatorFinal == null || executionList.length < 2) {
+        alert('ERROR !!');
         return 200
     }
     num1 = parseFloat(executionList[0]);
