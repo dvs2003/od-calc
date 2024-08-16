@@ -21,6 +21,9 @@ const allKeys = {
     19 : ['+', 'operator']
 };
 
+let executionList = [];
+let operatorFinal = null;
+
 const calcContainor = document.querySelector('.keyboard');
 const createButton = document.querySelector('#createCalc');
 
@@ -55,20 +58,131 @@ function createCalculator(parentDiv, numberRows, numberCols) {
                 newSquare.classList.add('lightKey');
             }
 
-            const keyText = document.createElement('span');
-            keyText.textContent = allKeys[Object.keys(allKeys)[indexCol + (indexRow * 4)]][0];
-            keyText.classList.add('keyText');
             
-            newSquare.appendChild(keyText);
+            newSquare.textContent = allKeys[Object.keys(allKeys)[indexCol + (indexRow * 4)]][0];
+            
+            
+            
 
             newSquare.addEventListener("click", (event) => {
                 const btn = event.target;
+                const statusButton =  document.querySelector('.currentOp');
+                const displayBar = document.querySelector('.display');
+                // Reset Check
+                if (btn.textContent == 'AC') {
+                    resetCalculator(statusButton, displayBar, false);
+                } else {
+                    handleInput(btn, statusButton, displayBar);
+                }
                 console.log(btn.textContent);
+                // AFter [pressogn = go back to red N/A]
             });
 
             newRow.appendChild(newSquare);
             
         }
         parentDiv.appendChild(newRow);
+    }
+}
+
+
+
+function resetCalculator(statusButton, displayBar, softResetCheck) {
+    
+    if (softResetCheck) {
+        displayBar.textContent = '0';
+    } else {
+        displayBar.textContent = '0';
+        statusButton.textContent = 'N/A';
+        // Reset History
+        // Reset Execution List
+    }
+}
+
+function handleInput(btn, statusButton, displayBar) {
+    console.log(btn);
+    if (btn.textContent == '.') {
+        displayBar.textContent += (displayBar.textContent.indexOf('.') > -1) ? '' : '.';
+        return 200
+    } else if (btn.classList.contains('normalKey')) {
+        console.log("Number Detected");
+        handleNumInput(btn, statusButton, displayBar);
+    } else if (btn.classList.contains('lightKey')) {
+        handleOpInput(btn, statusButton, displayBar);
+    } else {
+        executionList.push(displayBar.textContent);
+        executeTheList(statusButton, displayBar, true);
+    }
+}
+
+
+function handleNumInput(btn, statusButton, displayBar) {
+    
+    if (displayBar.textContent == '0') {
+        displayBar.textContent = btn.textContent;
+    } else {
+        displayBar.textContent += btn.textContent;
+    }
+    
+}
+
+function executeTheList(statusButton, displayBar, isNext = false) {
+    if (operatorFinal == null) {
+        alert('No Operator Selected!!');
+        return 200
+    }
+    num1 = parseFloat(executionList[0]);
+    num2 = parseFloat(executionList[1]);
+    let answer = null;
+    switch (operatorFinal) {
+        case '+':
+            answer = num1 + num2;
+            break;
+        case '-':
+            answer = num1 - num2;
+            break;
+        case 'x':
+            answer = num1 * num2;
+            break;
+        case 'div':
+            answer = num1 / num2;
+            break;
+        case '%':
+            answer = num1 % num2;
+            break;
+        default:
+            answer = 99;
+            break;
+    }
+    displayBar.textContent = answer;
+    
+    resetCalculator(statusButton, displayBar, false);
+    executionList = [];
+    if (isNext == false) {
+        operatorFinal = null;
+    }
+    displayBar.textContent = answer;
+    //executionList.push(answer);
+    return answer
+
+    //Reset the list
+    //Set the first element in the list to the answer
+    //return the asnwer for if it needs printing
+    //Append to history Listr below with = answer
+    // REset that list with AC
+}
+
+// Button checks for operator and appends else keeps replacing until next key orsomething
+
+function handleOpInput(btn, statusButton, displayBar) {
+    operatorFinal = btn.textContent;
+    console.log(executionList);
+    statusButton.textContent = btn.textContent;
+    if (executionList.length == 0) {
+        executionList.push(displayBar.textContent);
+        resetCalculator(statusButton, displayBar, true);
+    } else {
+        executionList.push(displayBar.textContent);
+        executeTheList(statusButton, displayBar, true);
     }
 }
