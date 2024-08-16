@@ -1,12 +1,14 @@
 body {
     height: 100vh;
-    background-color: grey;
+    background-color: #1F1F1F;
+    font-family: Arial, sans-serif;
 }
 
 .calculator {
     display: flex;
     flex-direction: column;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
+    background-color: #1F1F1F;
     height: 100vh;
     max-width: 373px;
     margin: auto;
@@ -14,34 +16,44 @@ body {
 
 .calcDisplay {
     flex-basis: 72px;
-    background-color: pink;
+    /* background-color: pink; */
+    background-color: #1F1F1F;
     display: flex;
 
 }
 
 .display {
-    background-color: grey;
+    background-color: #1F1F1F;
     box-sizing: border-box;
-    margin: 10px;
+    margin: 7px;
     border-radius: 12px;
     flex: 1;
     text-align: end;
     font-size: 30px;
     padding-top: 10px;
     padding-right: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #303134;
+    color: #e8eaed;
+}
+
+.display:hover {
+    background-color: #303134;
 }
 
 .keyboard {
     display: flex;
     flex-direction: column;
-    background-color: blue;
+    /* background-color: blue; */
+    background-color: #1F1F1F;
     align-content: stretch;
     flex-basis: 220px;
     flex-shrink: 1;
     gap: 7px;
     padding: 7px;
     box-sizing: border-box;
-
+    font-size: 14px;
 }
 /*https://www.w3schools.com/css/css3_flexbox_container.asp*/
 
@@ -49,7 +61,8 @@ body {
     flex: 1;
     display: flex;
     flex-direction: row;
-    background-color: red;
+    /* background-color: red; */
+    background-color: #1F1F1F;
     gap: 7px;
 }
 
@@ -64,4 +77,41 @@ body {
 
 .keyText {
     font-size: medium;
+}
+
+.lightKey {
+    background: #5f6368;
+    color: #e8eaed;
+    border: 1px solid #3c4043;
+}
+
+.lightKey:hover {
+    background: #70757a;
+    border-color: #70757a;
+}
+
+.exeKey {
+    background: #8ab4f8;
+    color: #202124;
+    border: 1px solid #8ab4f8;
+}
+
+.exeKey:hover {
+    background: #aecbfa;
+    border-color: #aecbfa;
+}
+
+.normalKey {
+    background: #3c4043;
+    color: #e8eaed;
+    border: 1px solid #3c4043;
+}
+
+.normalKey:hover {
+    background: #424548;
+    border-color: #424548;
+}
+
+.currentOp {
+    background-color: red;
 }
